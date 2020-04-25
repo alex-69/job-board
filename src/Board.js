@@ -11,7 +11,7 @@ class Board extends React.Component {
       const column = this.state.columns[columnId];
       const cards = column.cardIds.map(cardId => this.state.cards[cardId]);
 
-      return <Column key={column.id} column={column} tasks={cards}/>;
+      return <Column key={column.id} column={column} cards={cards}/>;
     })
   }
 }
