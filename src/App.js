@@ -1,11 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import Board from './Board';
+
 
 const App = () => {
-  return <p>
-    hello world
-  </p>
+  return (
+    <Board/>
+  );
 }
 
 export default App;
