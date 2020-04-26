@@ -10,7 +10,16 @@ const Container = styled.div`
   margin-bottom: 8px;
   background-color: ${props => props.isDragging ? 'lightgray' : 'white'};
 `;
-
+const IconCard= styled.span`
+  :after {
+    content:"";
+    background-color: black;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    float: right;
+  }
+`;
 const TitleCard = styled.h3``;
 
 export default class Card extends React.Component {
@@ -24,6 +33,8 @@ export default class Card extends React.Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
+            {/* <a></a> */}
+            <IconCard/>
             <TitleCard>{this.props.card.title}</TitleCard>
             <ul>
               <li>{this.props.card.date}</li>

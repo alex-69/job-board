@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import dummyDatas from './dummyDatas';
 import Column from './column';
 
 const Container = styled.div`
@@ -18,7 +17,7 @@ class InnerList extends React.PureComponent {
   }
 }
 class Board extends React.Component {
-  state = dummyDatas;
+  state = this.props.items;
 
   onDragStart = () => {
     document.body.style.color = 'green';
@@ -113,14 +112,12 @@ class Board extends React.Component {
     }
   }
 
-  console.log(newState);
-
   this.setState(newState);
   return;
 }
 
-  
   render() {
+    console.log(this.state)
     return (
       <DragDropContext onDragEnd={this.onDragEnd} // onDragStart= {this.onDragStart} onDragUpdate= {this.onDragUpdate}
       >
@@ -134,6 +131,7 @@ class Board extends React.Component {
              {...provided.droppableProps}
              ref={provided.innerRef}
             >
+              
               {this.state.columnOrder.map((columnId, index)=> {
                 const column = this.state.columns[columnId];
 
