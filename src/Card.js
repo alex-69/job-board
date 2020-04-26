@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
+
+import Modal from './shared/Components/UIElements/Modal';
+import EditCard from './shared/Components/FormElements/Button';
+import CloseEditCard from './shared/Components/FormElements/Button';
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -22,32 +26,52 @@ const IconCard= styled.span`
 `;
 const TitleCard = styled.h3``;
 
-export default class Card extends React.Component {
-  render() {
+const Card = props => {
+
+  const [showCard, setShowCard] = useState(false);
+ 
+  const openEditHandler = () => setShowCard(true);
+
+  const closeEdiHandler = () => setShowCard(false);
+
     return (
-      <Draggable  draggableId={this.props.card.id} index={this.props.index}>
-        {(provided, snapshot) => (
-          <Container
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
-          >
-            {/* <a></a> */}
-            <IconCard/>
-            <TitleCard>{this.props.card.title}</TitleCard>
-            <ul>
-              <li>{this.props.card.date}</li>
-              <li>{this.props.card.exitDate}</li>
-              <li>{this.props.card.company}</li>
-              <li>{this.props.card.platform}</li>
-              <li>{this.props.card.contact}</li>
-              <li>{this.props.card.email}</li>
-              <li>{this.props.card.type} </li>
-            </ul>
-          </Container>
-        )}
-      </Draggable>
+      <React.Fragment>
+        <Modal
+          show={showCard}
+          onCancel={closeEdiHandler}
+          header={props.card.title}
+          contentClass="place-item__modal-content"
+          footerClass="place-item__modal-actions"
+          footer={<CloseEditCard onClick={closeEdiHandler}>CLOSE</CloseEditCard>}
+        >
+          the card
+        </Modal>
+        <Draggable  draggableId={props.card.id} index={props.index}>
+          {(provided, snapshot) => (
+            <Container
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              isDragging={snapshot.isDragging}
+            >
+              <EditCard href={'#'} onClick={openEditHandler}>
+                <IconCard/>
+                <TitleCard>{props.card.title}</TitleCard>
+                <ul>
+                  <li>{props.card.date}</li>
+                  <li>{props.card.exitDate}</li>
+                  <li>{props.card.company}</li>
+                  <li>{props.card.platform}</li>
+                  <li>{props.card.contact}</li>
+                  <li>{props.card.email}</li>
+                  <li>{props.card.type} </li>
+                </ul>
+              </EditCard> 
+            </Container>
+          )}
+        </Draggable>
+      </React.Fragment>
     )
-  }
 }
+
+export default Card;
