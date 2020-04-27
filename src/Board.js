@@ -13,7 +13,9 @@ class InnerList extends React.PureComponent {
   render() {
     const { column, cardMap, index} = this.props;
     const cards = column.cardIds.map(cardId => cardMap[cardId]);
-    return <Column column={column} cards={cards} index={index}/>;
+    return(
+      <Column column={column} cards={cards} index={index}/>
+    );
   }
 }
 class Board extends React.Component {
@@ -117,7 +119,6 @@ class Board extends React.Component {
 }
 
   render() {
-    console.log(this.state)
     return (
       <DragDropContext onDragEnd={this.onDragEnd} // onDragStart= {this.onDragStart} onDragUpdate= {this.onDragUpdate}
       >

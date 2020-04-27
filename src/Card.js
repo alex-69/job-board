@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 
 import Modal from './shared/Components/UIElements/Modal';
+import UpdateCard from './UpdateCard'
 import EditCard from './shared/Components/FormElements/Button';
 import CloseEditCard from './shared/Components/FormElements/Button';
 
@@ -44,7 +45,17 @@ const Card = props => {
           footerClass="place-item__modal-actions"
           footer={<CloseEditCard onClick={closeEdiHandler}>CLOSE</CloseEditCard>}
         >
-          the card
+          <UpdateCard
+            id={props.card.id}
+            title={props.card.title}
+            date={props.card.date}
+            exitDate={props.card.exitDate}
+            company={props.card.company}
+            platform={props.card.platform}
+            contact={props.card.contact}
+            email={props.card.email}
+            type= {props.card.type}
+          />
         </Modal>
         <Draggable  draggableId={props.card.id} index={props.index}>
           {(provided, snapshot) => (
@@ -54,7 +65,7 @@ const Card = props => {
               ref={provided.innerRef}
               isDragging={snapshot.isDragging}
             >
-              <EditCard href={'#'} onClick={openEditHandler}>
+              <EditCard href={'#card?' + props.card.id} onClick={openEditHandler}>
                 <IconCard/>
                 <TitleCard>{props.card.title}</TitleCard>
                 <ul>
