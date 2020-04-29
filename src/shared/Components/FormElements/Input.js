@@ -50,8 +50,8 @@ const Input = props => {
     });
   };
 
-  const element =
-    props.element === 'input' ? (
+  const input = 
+    props.element === 'input' ? (
       <input
         id={props.id}
         type={props.type}
@@ -60,15 +60,28 @@ const Input = props => {
         onBlur={touchHandler}
         value={inputState.value}
       />
-    ) : (
+      ):null
+    
+  const textarea = 
+    props.element === 'textarea' ? (
       <textarea
         id={props.id}
         rows={props.rows || 3}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
-      />
-    );
+      />):null
+
+  const select =  
+    props.element === 'select' ? (
+      <select id={props.id} value={inputState.value} onChange={changeHandler}
+      onBlur={touchHandler}>
+        <option value={inputState.value}>{inputState.value}</option>
+        {inputState.value !== 'démarchage'?(<option value='démarchage'>démarchage</option>):null}
+        {inputState.value !== 'spontanée'?(<option value='spontanée'>spontanée</option>):null}
+        {inputState.value !== 'offre'?(<option value='offre'>offre</option>):null}
+      </select>
+    ):null
 
   return (
     <div
@@ -76,7 +89,10 @@ const Input = props => {
         'form-control--invalid'}`}
     >
       <label htmlFor={props.id}>{props.label}</label>
-      {element}
+        {input}
+        {textarea}
+        {select}
+      
       {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
     </div>
   );

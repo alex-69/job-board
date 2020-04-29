@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { Link, Route, useRouteMatch} from 'react-router-dom' 
 
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 
 import Modal from './shared/Components/UIElements/Modal';
 import UpdateCard from './UpdateCard'
-import EditCard from './shared/Components/FormElements/Button';
-import CloseEditCard from './shared/Components/FormElements/Button';
+import Button from './shared/Components/FormElements/Button';
+
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -27,36 +28,19 @@ const IconCard= styled.span`
 `;
 const TitleCard = styled.h3``;
 
-const Card = props => {
+const Card = (props) => {
 
+  const match = useRouteMatch();
+
+  
   const [showCard, setShowCard] = useState(false);
  
   const openEditHandler = () => setShowCard(true);
 
   const closeEdiHandler = () => setShowCard(false);
-
+  
     return (
       <React.Fragment>
-        <Modal
-          show={showCard}
-          onCancel={closeEdiHandler}
-          header={props.card.title}
-          contentClass="place-item__modal-content"
-          footerClass="place-item__modal-actions"
-          footer={<CloseEditCard onClick={closeEdiHandler}>CLOSE</CloseEditCard>}
-        >
-          <UpdateCard
-            id={props.card.id}
-            title={props.card.title}
-            date={props.card.date}
-            exitDate={props.card.exitDate}
-            company={props.card.company}
-            platform={props.card.platform}
-            contact={props.card.contact}
-            email={props.card.email}
-            type= {props.card.type}
-          />
-        </Modal>
         <Draggable  draggableId={props.card.id} index={props.index}>
           {(provided, snapshot) => (
             <Container
@@ -64,8 +48,8 @@ const Card = props => {
               {...provided.dragHandleProps}
               ref={provided.innerRef}
               isDragging={snapshot.isDragging}
-            >
-              <EditCard href={'#card?' + props.card.id} onClick={openEditHandler}>
+            > 
+              <Link to= {`${match.url}/${props.card.id}`} onClick={openEditHandler}>
                 <IconCard/>
                 <TitleCard>{props.card.title}</TitleCard>
                 <ul>
@@ -77,10 +61,33 @@ const Card = props => {
                   <li>{props.card.email}</li>
                   <li>{props.card.type} </li>
                 </ul>
-              </EditCard> 
+              </Link> 
             </Container>
           )}
         </Draggable>
+        <Modal
+            show={showCard}
+            onCancel={closeEdiHandler}
+            header={props.card.title}
+            contentClass="place-item__modal-content"
+            footerClass="place-item__modal-actions"
+            footer={<Button onClick={closeEdiHandler}>CLOSE</Button>}
+          >
+            <Route path={`${match.path}'/:cardId`} exact>
+              <p>hey!!!!</p>
+            <UpdateCard
+              id={props.card.id}
+              title={props.card.title}
+              date={props.card.date}
+              exitDate={props.card.exitDate}
+              company={props.card.company}
+              platform={props.card.platform}
+              contact={props.card.contact}
+              email={props.card.email}
+              type= {props.card.type}
+            />
+        </Route>
+          </Modal>
       </React.Fragment>
     )
 }

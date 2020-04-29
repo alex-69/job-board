@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link } from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -12,12 +12,12 @@ const Navlinks = props => {
   return( 
   <Links>
     <li>
-    <Link to="u1/board">UserBoard</Link>
+    <NavLink to="/u1/board">UserBoard</NavLink>
     </li>
     <li>Calendrier</li>
     <li>Notifications</li>
     <li>
-      <Link to="/auth">Se connecter</Link>
+      <NavLink to="/auth">Se connecter</NavLink>
     </li>
   </Links>
  )

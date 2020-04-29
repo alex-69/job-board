@@ -29,19 +29,25 @@ const CardList = styled.div`
 `;
 
 class InnerList extends React.Component {
+
+  componentDidMount(){
+    console.log(this.props)
+  }
   shouldComponentUpdate(nextProps) {
+
     if(nextProps.cards === this.props.cards) {
       return false
     }
     return true
   }
   render(){
-    return this.props.cards.map((card, index) =>(<Card key={card.id} card={card} index={index}/>
+    return this.props.cards.map((card, index) =>(
+    <Card key={card.id} card={card} index={index}/>
       ));
   }
 }
 const Column = props => {
-
+ 
   const [showCard, setShowCard] = useState(false);
  
   const openEditHandler = () => setShowCard(true);

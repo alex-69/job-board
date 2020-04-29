@@ -18,9 +18,11 @@ class InnerList extends React.PureComponent {
     );
   }
 }
-class Board extends React.Component {
+class Board extends React.PureComponent {
   state = this.props.items;
-
+  componentDidMount(){
+    console.log(this.props)
+  }
   onDragStart = () => {
     document.body.style.color = 'green';
     document.body.style.transition = 'background-color 0.2s ease';
@@ -119,6 +121,7 @@ class Board extends React.Component {
 }
 
   render() {
+    
     return (
       <DragDropContext onDragEnd={this.onDragEnd} // onDragStart= {this.onDragStart} onDragUpdate= {this.onDragUpdate}
       >

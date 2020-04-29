@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
+import Modal from './shared/Components/UIElements/Modal';
 import Input from './shared/Components/FormElements/Input';
 import Button from './shared/Components/FormElements/Button';
 import {
@@ -10,24 +11,35 @@ import {
 } from './shared/util/validators';
 import { useForm } from './shared/hooks/form-hook';
 
-// import DUMMY_DATAS from './dummyDatas';
-
 const Form = styled.form`
-  list-style: none;
+  list-style: none; 
   margin: 0 auto;
   width: 90%;
 `;
 
-// const Dummy_board = DUMMY_DATAS;
-
 const UpdatePlace = (props) => {
+
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  const showDeleteWarningHandler = () => {
+    setShowConfirmModal(true);
+  };
+
+  const cancelDeleteHandler = () => {
+    setShowConfirmModal(false);
+  };
+
+  const confirmDeleteHandler = () => {
+    setShowConfirmModal(false);
+    console.log('DELETING...');
+  };
 
   const identifiedCard =  {
     id: props.id,
     title: props.title,
     date: props.date,
     exitDate: props.exitDate,
-    company: props.company,
+    company: props.company, 
     platform: props.platform,
     contact: props.contact,
     email: props.email,
@@ -41,46 +53,40 @@ const UpdatePlace = (props) => {
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
-        value: '',
+        value: identifiedCard.title,
         isValid: false
       },
       date: {
-        value: '',
+        value: identifiedCard.date,
         isValid: false
       },
       exitDate: {
         value: identifiedCard.exitDate,
-        isValid: true
+        isValid: false
       },
       company: {
         value: identifiedCard.company,
-        isValid: true
+        isValid: false
       },
       platform: {
         value: identifiedCard.platform,
-        isValid: true
+        isValid: false
       },
       contact: {
         value: identifiedCard.contact,
-        isValid: true
+        isValid: false
       },
       email: {
         value: identifiedCard.email,
-        isValid: true
+        isValid: false
       },
       type: {
         value: identifiedCard.type,
-        isValid: true
+        isValid: false
       }
     },
     false
   );
-
-  // const loadedBoard = Dummy_board.filter(board => board.creator === userId);
-  // console.log(loadedBoard)
-  // // const identifiedCard = loadedBoard[0].cards.filter(c => c.id === cardId);
-  // const identifiedCard = loadedBoard[0].cards[cardId];
-  // console.log(identifiedCard)
 
   useEffect(() => {
     if (identifiedCard) {
@@ -147,6 +153,27 @@ const UpdatePlace = (props) => {
   }
 
   return (
+    <React.Fragment>
+      <Modal
+      show={showConfirmModal}
+      onCancel={cancelDeleteHandler}
+      header="Are you sure?"
+      footerClass="place-item__modal-actions"
+      footer={
+        <React.Fragment>
+          <Button inverse onClick={cancelDeleteHandler}>
+            CANCEL
+          </Button>
+          <Button danger onClick={confirmDeleteHandler}>
+            DELETE
+          </Button>
+        </React.Fragment>
+      }
+    >
+      <p>
+        Souhaitez-vous vriament supprimmer 
+      </p>
+    </Modal>
     <Form onSubmit={cardUpdateSubmitHandler}>
       <Input
         id="title"
@@ -227,8 +254,8 @@ const UpdatePlace = (props) => {
       />
       <Input
         id="type"
-        element="input"
-        type="text"
+        element="select"
+        // type="text"
         label="Type"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Entrez un Type valide."
@@ -240,6 +267,10 @@ const UpdatePlace = (props) => {
         Mettre à jour
       </Button>
     </Form>
+    <Button danger onClick={showDeleteWarningHandler}>
+      DELETE
+    </Button>
+  </React.Fragment>
   );
 };
 

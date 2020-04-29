@@ -1,10 +1,10 @@
 const DUMMY_DATAS = [
   {
     cards: {
-      'card-1': { id: 'card-1', title: 'Chef de projet digital', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
-      'card-2': { id: 'card-2', title: 'Chef de projet ERP', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
-      'card-3': { id: 'card-3', title: 'Développeur web', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
-      'card-4': { id: 'card-4', title: 'Consultant Digital', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
+      'card-1': { id: 'card-1', title: 'Chef de projet digital', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
+      'card-2': { id: 'card-2', title: 'Chef de projet ERP', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage',notes: 'relancer' },
+      'card-3': { id: 'card-3', title: 'Développeur web', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage',notes: 'relancer' },
+      'card-4': { id: 'card-4', title: 'Consultant Digital', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage',notes: 'relancer' },
     },
     columns: {
       'column-1': {
@@ -29,10 +29,10 @@ const DUMMY_DATAS = [
   },
   {
     cards: {
-      'card-1': { id: 'card-1', title: 'Chef de projet digital', date: '30 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
-      'card-2': { id: 'card-2', title: 'Chef de projet ERP', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
-      'card-3': { id: 'card-3', title: 'Développeur web', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
-      'card-4': { id: 'card-4', title: 'Consultant Digital', date: '28 mars', exitDate: '4 avril', company: 'AP Web', platform: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage' },
+      'card-1': { id: 'card-1', title: 'Chef de projet digital', date: '30 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'spontanée', notes: 'relancer' },
+      'card-2': { id: 'card-2', title: 'Chef de projet ERP', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage', notes: 'appeler' },
+      'card-3': { id: 'card-3', title: 'Développeur web', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage', notes: 'appeler' },
+      'card-4': { id: 'card-4', title: 'Consultant Digital', date: '28 mars', exitDate: '4 avril', company: 'AP Web', address:'Lyon', Link: 'Indeed', contact: 'Alexis PEYRON', email: 'job@apweb.fr', type: 'démarchage', notes: 'relancer' },
     },
     columns: {
       'column-1': {

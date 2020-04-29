@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import MainNavigation from './Navigation/MainNavigation';
 import UserBoard from './UserBoard'
 
+
 const Container = styled.main`
   margin-top:5rem;
 `;
@@ -16,10 +17,7 @@ const App = () => {
       <Container>
         <Switch>
           <Route path="/" exact></Route>
-          <Route path="/:userId/board">
-            <UserBoard/>
-          </Route>
-          <Redirect to="/"/>
+          <Route path="/:userId/board" exact component={UserBoard}/>
         </Switch>
       </Container>
     </Router>
