@@ -49,7 +49,7 @@ const Card = (props) => {
               ref={provided.innerRef}
               isDragging={snapshot.isDragging}
             > 
-              <Link to= {`${match.url}/${props.card.id}`} onClick={openEditHandler}>
+              <Link to= {`#/{props.card.id}`} onClick={openEditHandler}>
                 <IconCard/>
                 <TitleCard>{props.card.title}</TitleCard>
                 <ul>
@@ -73,8 +73,7 @@ const Card = (props) => {
             footerClass="place-item__modal-actions"
             footer={<Button onClick={closeEdiHandler}>CLOSE</Button>}
           >
-            <Route path={`${match.path}'/:cardId`} exact>
-              <p>hey!!!!</p>
+            
             <UpdateCard
               id={props.card.id}
               title={props.card.title}
@@ -86,7 +85,7 @@ const Card = (props) => {
               email={props.card.email}
               type= {props.card.type}
             />
-        </Route>
+
           </Modal>
       </React.Fragment>
     )
