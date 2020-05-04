@@ -11,10 +11,11 @@ const Container = styled.div`
 
 class InnerList extends React.PureComponent {
   render() {
+    console.log(this.props)
     const { column, cardMap, index} = this.props;
     const cards = column.cardIds.map(cardId => cardMap[cardId]);
     return(
-      <Column column={column} cards={cards} index={index}/>
+      <Column column={column} cards={cards} index={index} {...this.props}/>
     );
   }
 }
@@ -144,7 +145,9 @@ class Board extends React.PureComponent {
                     key={column.id}
                     column={column} 
                     cardMap={this.state.cards} 
-                    index={index}/>
+                    index={index}
+                    {...this.props}
+                    />
                 );
               })}
               {provided.placeholder}

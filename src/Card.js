@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route, useRouteMatch} from 'react-router-dom' 
+import { BrowserRouter as Route, Link, RouteChildrenProps} from 'react-router-dom'; 
 
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
@@ -30,9 +30,6 @@ const TitleCard = styled.h3``;
 
 const Card = (props) => {
 
-  const match = useRouteMatch();
-
-  
   const [showCard, setShowCard] = useState(false);
  
   const openEditHandler = () => setShowCard(true);
@@ -49,7 +46,7 @@ const Card = (props) => {
               ref={provided.innerRef}
               isDragging={snapshot.isDragging}
             > 
-              <Link to= {`#/{props.card.id}`} onClick={openEditHandler}>
+              <Link to= { props.match.url + '#/cards/' + props.card.id} onClick={openEditHandler}>
                 <IconCard/>
                 <TitleCard>{props.card.title}</TitleCard>
                 <ul>
@@ -61,7 +58,7 @@ const Card = (props) => {
                   <li>{props.card.email}</li>
                   <li>{props.card.type} </li>
                 </ul>
-              </Link> 
+              </Link>
             </Container>
           )}
         </Draggable>
@@ -73,7 +70,9 @@ const Card = (props) => {
             footerClass="place-item__modal-actions"
             footer={<Button onClick={closeEdiHandler}>CLOSE</Button>}
           >
-            
+           
+            <Route exact 
+            path={props.match.path + '#/cards/:cardId'} component={UpdateCard}><p>hey!</p></Route>
             <UpdateCard
               id={props.card.id}
               title={props.card.title}
@@ -85,7 +84,6 @@ const Card = (props) => {
               email={props.card.email}
               type= {props.card.type}
             />
-
           </Modal>
       </React.Fragment>
     )

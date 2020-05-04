@@ -12,7 +12,7 @@ const Navlinks = props => {
   return( 
   <Links>
     <li>
-    <NavLink to="/u1/board">UserBoard</NavLink>
+    <NavLink to="/u1/userboard">UserBoard</NavLink>
     </li>
     <li>Calendrier</li>
     <li>Notifications</li>

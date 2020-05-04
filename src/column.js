@@ -42,12 +42,14 @@ class InnerList extends React.Component {
   }
   render(){
     return this.props.cards.map((card, index) =>(
-    <Card key={card.id} card={card} index={index}/>
+    <Card key={card.id} card={card} index={index} {...this.props}/>
       ));
   }
 }
 const Column = props => {
- 
+  
+  console.log(props)
+
   const [showCard, setShowCard] = useState(false);
  
   const openEditHandler = () => setShowCard(true);
@@ -79,7 +81,7 @@ const Column = props => {
                   {...provided.droppableProps}
                   isDraggingOver={snapshot.isDraggingOver}
                 >
-                  <InnerList cards={props.cards} />
+                  <InnerList cards={props.cards} {...props} />
                   {provided.placeholder}
                 </CardList>
               )}

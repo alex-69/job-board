@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
+
 
 import Modal from './shared/Components/UIElements/Modal';
 import Input from './shared/Components/FormElements/Input';
@@ -18,7 +19,7 @@ const Form = styled.form`
 `;
 
 const UpdatePlace = (props) => {
-
+console.log(props);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const showDeleteWarningHandler = () => {
@@ -45,43 +46,44 @@ const UpdatePlace = (props) => {
     email: props.email,
     type: props.type
   }
+  const cardId = useParams().userId;
+
+  console.log(cardId);
 
   const [isLoading, setIsLoading] = useState(true);
-  // const cardId = useParams().cardId;
-  // const userId = .userId;
 
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
-        value: identifiedCard.title,
+        value: '',
         isValid: false
       },
       date: {
-        value: identifiedCard.date,
+        value: '',
         isValid: false
       },
       exitDate: {
-        value: identifiedCard.exitDate,
+        value: '',
         isValid: false
       },
       company: {
-        value: identifiedCard.company,
+        value: '',
         isValid: false
       },
       platform: {
-        value: identifiedCard.platform,
+        value: '',
         isValid: false
       },
       contact: {
-        value: identifiedCard.contact,
+        value: '',
         isValid: false
       },
       email: {
-        value: identifiedCard.email,
+        value: '',
         isValid: false
       },
       type: {
-        value: identifiedCard.type,
+        value: '',
         isValid: false
       }
     },
@@ -154,6 +156,7 @@ const UpdatePlace = (props) => {
 
   return (
     <React.Fragment>
+      
       <Modal
       show={showConfirmModal}
       onCancel={cancelDeleteHandler}

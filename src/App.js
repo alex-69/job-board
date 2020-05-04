@@ -16,8 +16,12 @@ const App = () => {
       <MainNavigation/>
       <Container>
         <Switch>
-          <Route path="/" exact></Route>
-          <Route path="/:userId/board" exact component={UserBoard}/>
+          <Route path="/" exact/>
+          <Route 
+            exact 
+            path="/:userId/userboard" 
+            component ={UserBoard}
+          />
         </Switch>
       </Container>
     </Router>
